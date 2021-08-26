@@ -18,7 +18,15 @@ Route::get('/', function () {
 });
 
 
-Route::get('/admin/dashboard', 'Admin\DashboardController@index');
+Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth']],function(){
+	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+	
+	Route::get('/setting', 'Setting\SettingController@index');
+});
+
+// Route::get('/admin/change-password', 'Auth\ChangePasswordController@changePassword')->name('change.password.index');
+Route::post('/admin/change-password', 'Auth\ChangePasswordController@updatePassword')->name('change.password');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
