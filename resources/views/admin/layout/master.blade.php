@@ -1,6 +1,9 @@
 @include('admin.layout.header')
 <body>
   <div class="app" id="app">
+    <router-view></router-view>
+    {{-- <example-component></example-component> --}}
+
     <!-- ############ LAYOUT START-->
     <!-- aside -->
     @include('admin.layout.sidebar')
@@ -17,11 +20,12 @@
       @include('admin.layout.footer')
       {{-- FOOTER END --}}
 
-      <div ui-view class="app-body" id="view">
-        <!-- ############ PAGE START-->
-        @section('main-content')
-          @show
-        <!-- ############ PAGE END-->
+        <div ui-view class="app-body" id="view">
+          <!-- ############ PAGE START-->
+          @section('main-content')
+            @show
+          <!-- ############ PAGE END-->
+        </div>
       </div>
     </div>
     <!-- / -->
@@ -32,6 +36,7 @@
   </div>
   <!-- build:js /admin/scripts/app.html.js -->
   <!-- jQuery -->
+  <script src="{{ mix('js/app.js') }}"></script>
   <script src="/admin/libs/jquery/jquery/dist/jquery.js"></script>
   <!-- Bootstrap -->
   <script src="/admin/libs/jquery/tether/dist/js/tether.min.js"></script>
